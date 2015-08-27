@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" th:src="@{//code.jquery.com/jquery-1.11.0.min.js}"></script>
+    <!-- Bootstrap -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+    <link id="bs-css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" th:href="@{//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" th:href="@{//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../static/css/daterangepicker-bs3.css" th:href="@{/css/daterangepicker-bs3.css}"/>
+    <script src="../static/js/daterangepicker.js" th:src="@{/js/daterangepicker.js}"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" th:href="@{//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css}"/>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js" th:src="@{//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"  th:src="@{//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js}"></script>
+    <link rel="stylesheet" href="../static/css/divresearch.css" th:href="@{/css/divresearch.css}"/>
+    <script src="../static/js/divresearch.js" th:src="@{/js/divresearch.js}"></script>
+    <link id="enhancement" rel="stylesheet" href="../static/css/dropdowns-enhancement.min.css" th:href="@{/css/dropdowns-enhancement.min.css}"/>
+    <script src="../static/js/dropdowns-enhancement.js" th:src="@{/js/dropdowns-enhancement.js}"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var tickers = /*[[${tickerList}]]*/ [];
+        /*]]>*/
+    </script>
+</head>
+<body data-spy="scroll" th:inline="text" data-ng-app="divresearch">
+<!-- topbar starts -->
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="MenuController as menu">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Dividend Research</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a ng-click="menu.show('research')" href="">Research</a></li>
+                <li><a ng-click="menu.show('upload')" href="">Upload</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search"/>
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="glyphicon glyphicon-tint"></i>
+                        <span class="hidden-sm hidden-xs" data-label-placement="data-label-placement">Classic</span><span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><input type="radio" id="classic" name="theme" value="classic" checked="checked"/><label for="classic">Classic</label></li>
+                        <li><input type="radio" id="cerulean" name="theme" value="cerulean"/><label for="cerulean">Cerulean</label></li>
+                        <li><input type="radio" id="cyborg" name="theme" value="cyborg"/><label for="cyborg">Cyborg</label></li>
+                        <li><input type="radio" id="simplex" name="theme" value="simplex"/><label for="simplex">Simplex</label></li>
+                        <li><input type="radio" id="darkly" name="theme" value="darkly"/><label for="darkly">Darkly</label></li>
+                        <li><input type="radio" id="sandstone" name="theme" value="sandstone"/><label for="sandstone">SandStone</label></li>
+                        <li><input type="radio" id="slate" name="theme" value="slate"/><label for="slate">Slate</label></li>
+                        <li><input type="radio" id="lumen" name="theme" value="lumen"/><label for="lumen">Lumen</label></li>
+                        <li><input type="radio" id="spacelab" name="theme" value="spacelab"/><label for="spacelab">Spacelab</label></li>
+                        <li><input type="radio" id="united" name="theme" value="united"/><label for="united">United</label></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<!-- topbar ends -->
+<div class="container">
+    <div id="research" class="view">
+        Research page under construction...
+    </div>
+    <div id="upload" class="view well">
+        <h3 th:if="${tickerList.isEmpty()}">There is no ticker listed yet.  Please add new ticker or upload a file to load tickers in batch.</h3>
+        <div id="actions" class="row">
+
+              <div class="col-lg-7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                  Drop files or
+                <span class="btn btn-success fileinput-button dz-clickable">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Add files...</span>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel upload</span>
+                </button>
+              </div>
+
+              <div class="col-lg-5">
+                <!-- The global file processing state -->
+                <span class="fileupload-process">
+                  <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="opacity: 0;">
+                    <div class="progress-bar progress-bar-success" style="width: 100%;" data-dz-uploadprogress=""></div>
+                  </div>
+                </span>
+              </div>
+
+            </div>
+        <div class="table table-striped files" id="previews">
+
+          <div id="template" class="file-row">
+            <!-- This is used as the file preview template -->
+            <div>
+                <span class="preview"><img data-dz-thumbnail="data-dz-thumbnail" /></span>
+            </div>
+            <div>
+                <p class="name" data-dz-name="data-dz-name"></p>
+                <strong class="error text-danger" data-dz-errormessage="data-dz-errormessage"></strong>
+            </div>
+            <div>
+                <p class="size" data-dz-size="data-dz-size"></p>
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress="data-dz-uploadprogress="></div>
+                </div>
+            </div>
+            <div>
+              <button class="btn btn-primary start">
+                  <i class="glyphicon glyphicon-upload"></i>
+                  <span>Start</span>
+              </button>
+              <button data-dz-remove="data-dz-remove" class="btn btn-warning cancel">
+                  <i class="glyphicon glyphicon-ban-circle"></i>
+                  <span>Cancel</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+        Upload page under construction...
+    </div>
+</div>
+</body>
+</html>
