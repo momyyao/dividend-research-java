@@ -15,13 +15,9 @@
     <![endif]-->
     <link rel="stylesheet" href="../static/css/daterangepicker-bs3.css" th:href="@{/css/daterangepicker-bs3.css}"/>
     <script src="../static/js/daterangepicker.js" th:src="@{/js/daterangepicker.js}"></script>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" th:href="@{//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css}"/>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js" th:src="@{//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js}"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"  th:src="@{//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js}"></script>
     <link rel="stylesheet" href="../static/css/divresearch.css" th:href="@{/css/divresearch.css}"/>
     <script src="../static/js/divresearch.js" th:src="@{/js/divresearch.js}"></script>
-    <link id="enhancement" rel="stylesheet" href="../static/css/dropdowns-enhancement.min.css" th:href="@{/css/dropdowns-enhancement.min.css}"/>
-    <script src="../static/js/dropdowns-enhancement.js" th:src="@{/js/dropdowns-enhancement.js}"></script>
     <script th:inline="javascript">
         /*<![CDATA[*/
         var tickers = /*[[${tickerList}]]*/ [];
@@ -59,19 +55,19 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="glyphicon glyphicon-tint"></i>
-                        <span class="hidden-sm hidden-xs" data-label-placement="data-label-placement">Classic</span><span class="caret"></span>
+                        <span class="hidden-sm hidden-xs" id="themeLabel">Classic</span><span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><input type="radio" id="classic" name="theme" value="classic" checked="checked"/><label for="classic">Classic</label></li>
-                        <li><input type="radio" id="cerulean" name="theme" value="cerulean"/><label for="cerulean">Cerulean</label></li>
-                        <li><input type="radio" id="cyborg" name="theme" value="cyborg"/><label for="cyborg">Cyborg</label></li>
-                        <li><input type="radio" id="simplex" name="theme" value="simplex"/><label for="simplex">Simplex</label></li>
-                        <li><input type="radio" id="darkly" name="theme" value="darkly"/><label for="darkly">Darkly</label></li>
-                        <li><input type="radio" id="sandstone" name="theme" value="sandstone"/><label for="sandstone">SandStone</label></li>
-                        <li><input type="radio" id="slate" name="theme" value="slate"/><label for="slate">Slate</label></li>
-                        <li><input type="radio" id="lumen" name="theme" value="lumen"/><label for="lumen">Lumen</label></li>
-                        <li><input type="radio" id="spacelab" name="theme" value="spacelab"/><label for="spacelab">Spacelab</label></li>
-                        <li><input type="radio" id="united" name="theme" value="united"/><label for="united">United</label></li>
+                    <ul class="dropdown-menu" id="themes">
+                        <li class="active"><a ng-click="menu.changeTheme('Classic')" href="">Classic</a></li>
+                        <li><a ng-click="menu.changeTheme('Cerulean')" href="">Cerulean</a></li>
+                        <li><a ng-click="menu.changeTheme('Cyborg')" href="">Cyborg</a></li>
+                        <li><a ng-click="menu.changeTheme('Simplex')" href="">Simplex</a></li>
+                        <li><a ng-click="menu.changeTheme('Darkly')" href="">Darkly</a></li>
+                        <li><a ng-click="menu.changeTheme('Sandstone')" href="">SandStone</a></li>
+                        <li><a ng-click="menu.changeTheme('Slate')" href="">Slate</a></li>
+                        <li><a ng-click="menu.changeTheme('Lumen')" href="">Lumen</a></li>
+                        <li><a ng-click="menu.changeTheme('Spacelab')" href="">Spacelab</a></li>
+                        <li><a ng-click="menu.changeTheme('United')" href="">United</a></li>
                     </ul>
                 </li>
             </ul>
@@ -85,65 +81,8 @@
     </div>
     <div id="upload" class="view well">
         <h3 th:if="${tickerList.isEmpty()}">There is no ticker listed yet.  Please add new ticker or upload a file to load tickers in batch.</h3>
-        <div id="actions" class="row">
-
-              <div class="col-lg-7">
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                  Drop files or
-                <span class="btn btn-success fileinput-button dz-clickable">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span>Add files...</span>
-                </span>
-                <button type="submit" class="btn btn-primary start">
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>Start upload</span>
-                </button>
-                <button type="reset" class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel upload</span>
-                </button>
-              </div>
-
-              <div class="col-lg-5">
-                <!-- The global file processing state -->
-                <span class="fileupload-process">
-                  <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="opacity: 0;">
-                    <div class="progress-bar progress-bar-success" style="width: 100%;" data-dz-uploadprogress=""></div>
-                  </div>
-                </span>
-              </div>
-
-            </div>
-        <div class="table table-striped files" id="previews">
-
-          <div id="template" class="file-row">
-            <!-- This is used as the file preview template -->
-            <div>
-                <span class="preview"><img data-dz-thumbnail="data-dz-thumbnail" /></span>
-            </div>
-            <div>
-                <p class="name" data-dz-name="data-dz-name"></p>
-                <strong class="error text-danger" data-dz-errormessage="data-dz-errormessage"></strong>
-            </div>
-            <div>
-                <p class="size" data-dz-size="data-dz-size"></p>
-                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress="data-dz-uploadprogress="></div>
-                </div>
-            </div>
-            <div>
-              <button class="btn btn-primary start">
-                  <i class="glyphicon glyphicon-upload"></i>
-                  <span>Start</span>
-              </button>
-              <button data-dz-remove="data-dz-remove" class="btn btn-warning cancel">
-                  <i class="glyphicon glyphicon-ban-circle"></i>
-                  <span>Cancel</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
+        <p>Drag and drop here or
+        <label id="import-manual-trigger" class="btn-link">manually upload<input type="file" id="import-file-select" class="hidden"/></label></p>
         Upload page under construction...
     </div>
 </div>
