@@ -13,9 +13,9 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="../static/css/daterangepicker-bs3.css" th:href="@{/css/daterangepicker-bs3.css}"/>
-    <script src="../static/js/daterangepicker.js" th:src="@{/js/daterangepicker.js}"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"  th:src="@{//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js}"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"  th:src="@{//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js}"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" th:src="@{//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js}"></script>
     <link rel="stylesheet" href="../static/css/divresearch.css" th:href="@{/css/divresearch.css}"/>
     <script src="../static/js/divresearch.js" th:src="@{/js/divresearch.js}"></script>
     <script th:inline="javascript">
@@ -60,14 +60,21 @@
                     <ul class="dropdown-menu" id="themes">
                         <li class="active"><a ng-click="menu.changeTheme('Classic')" href="">Classic</a></li>
                         <li><a ng-click="menu.changeTheme('Cerulean')" href="">Cerulean</a></li>
+                        <li><a ng-click="menu.changeTheme('Cosmo')" href="">Cosmo</a></li>
                         <li><a ng-click="menu.changeTheme('Cyborg')" href="">Cyborg</a></li>
-                        <li><a ng-click="menu.changeTheme('Simplex')" href="">Simplex</a></li>
                         <li><a ng-click="menu.changeTheme('Darkly')" href="">Darkly</a></li>
-                        <li><a ng-click="menu.changeTheme('Sandstone')" href="">SandStone</a></li>
-                        <li><a ng-click="menu.changeTheme('Slate')" href="">Slate</a></li>
+                        <li><a ng-click="menu.changeTheme('Flatly')" href="">Flatly</a></li>
+                        <li><a ng-click="menu.changeTheme('Journal')" href="">Journal</a></li>
                         <li><a ng-click="menu.changeTheme('Lumen')" href="">Lumen</a></li>
+                        <li><a ng-click="menu.changeTheme('Paper')" href="">Paper</a></li>
+                        <li><a ng-click="menu.changeTheme('Readable')" href="">Readable</a></li>
+                        <li><a ng-click="menu.changeTheme('Sandstone')" href="">SandStone</a></li>
+                        <li><a ng-click="menu.changeTheme('Simplex')" href="">Simplex</a></li>
+                        <li><a ng-click="menu.changeTheme('Slate')" href="">Slate</a></li>
                         <li><a ng-click="menu.changeTheme('Spacelab')" href="">Spacelab</a></li>
+                        <li><a ng-click="menu.changeTheme('Superhero')" href="">Superhero</a></li>
                         <li><a ng-click="menu.changeTheme('United')" href="">United</a></li>
+                        <li><a ng-click="menu.changeTheme('Yeti')" href="">Yeti</a></li>
                     </ul>
                 </li>
             </ul>

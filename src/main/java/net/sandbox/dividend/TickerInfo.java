@@ -1,5 +1,6 @@
 package net.sandbox.dividend;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
@@ -13,27 +14,37 @@ public class TickerInfo {
     @Id
     private String symbol;
 
+    @JsonProperty("Name")
     private String companyName;
 
-    private Date startDate;
+    private String startYear;
 
+    @JsonProperty("DividendShare")
     private BigDecimal dividendShare;
 
+    @JsonProperty("ExDividendDate")
     private Date exDividendDate;
 
+    @JsonProperty("DividendPayDate")
     private Date dividendPayDate;
 
+    @JsonProperty("DividendYield")
     private BigDecimal dividendYield;
 
     private String dividendFrequency;
 
+    @JsonProperty("Currency")
     private String currency;
 
+    @JsonProperty("YearHigh")
     private BigDecimal yearHigh;
 
+    @JsonProperty("YearLow")
     private BigDecimal yearLow;
 
     private BigDecimal benchmarkPrice;
+
+    private BigDecimal historicLow;
 
     public BigDecimal getBenchmarkPrice() {
         return benchmarkPrice;
@@ -99,12 +110,20 @@ public class TickerInfo {
         this.exDividendDate = exDividendDate;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public BigDecimal getHistoricLow() {
+        return historicLow;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setHistoricLow(BigDecimal historicLow) {
+        this.historicLow = historicLow;
+    }
+
+    public String getStartYear() {
+        return startYear;
+    }
+
+    public void setStartYear(String startYear) {
+        this.startYear = startYear;
     }
 
     public String getSymbol() {
